@@ -2,7 +2,8 @@
 
 pragma solidity ^0.8.10;
 
-contract Collateral{
+
+contract CreditTracker{
 
     struct UserCreditScore{
 
@@ -11,7 +12,37 @@ contract Collateral{
         uint numberOfLoansTaken;
     }
 
+
+    struct UserInfo{
+        address addr;
+        uint amount;
+        uint loanDate;
+        uint repaymentDate;
+        bool repaid;
+    }
+
+    uint loanIndex = 1;
     mapping(address => UserCreditScore) public Tracklog;
+    mapping(uint => UserInfo) public Tracker;
+    mapping(address => UserInfo) public trackLoan;
+    mapping(address => mapping(uint => UserInfo)) public LoanTracker;
+
+
+    
+    function borrowedAmount(uint amountForCollateral, address _addr) private returns(uint){
+        uint amountGiven;
+        loanLogic(amountForCollateral, msg.sender);
+        return amountGiven;
+    }
+
+    function takeLoan(address _addr, uint _amountGiven, uint _loanDate, uint _repaymentDate) public {
+        UserInfo storage tloan = trackLoan[msg.sender];
+        tloan.amount = borrowedAmount(_amountGiven, msg.sender);
+        tloan.addr = msg.sender;
+        tloan.loanDate = _loanDate;
+        tloan.repaymentDate = _repaymentDate; 
+        loanIndex++;
+    }
 
     //function creditScore assigns a score for each loan of an address.
 
@@ -67,14 +98,16 @@ contract Collateral{
         }
     }
 
-    function loanLogic (uint _amount, address addr) view internal{
+    function loanLogic (uint _amount, address addr) view internal returns(uint){
         uint amountGiven;
         addr = msg.sender;
         if(calculateCollateral(addr) == 1){
             amountGiven = 1 * _amount;
+            return amountGiven;
         }
         else {
             amountGiven = ((80 * _amount) / 100);
+            return amountGiven;
         }
     }
 
