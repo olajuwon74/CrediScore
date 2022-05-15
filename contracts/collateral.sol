@@ -30,10 +30,10 @@ contract CreditTracker{
 
     
     function borrowedAmount(uint amountForCollateral, address _addr) private returns(uint){
-        uint amountGiven;
-        loanLogic(amountForCollateral, msg.sender);
+        uint amountGiven = loanLogic(amountForCollateral, msg.sender);
         return amountGiven;
     }
+    
 
     function takeLoan(address _addr, uint _amountGiven, uint _loanDate, uint _repaymentDate) public {
         UserInfo storage tloan = trackLoan[msg.sender];
@@ -90,7 +90,7 @@ contract CreditTracker{
     function calculateCollateral(address addr) view public returns (uint){
 
         addr = msg.sender;
-        if (cummulativeCredit(addr) >= 80){
+        if (cummulativeCredit(addr)` >= 80){
             return 1;
         }
         else{
