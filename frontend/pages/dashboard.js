@@ -142,7 +142,7 @@ export default function Dashboard() {
             fontSize: "36px",
             lineHeight: "49px",
             backgroundColor: "rgba(224, 227, 237, 0.5)",
-            padding: "36px 60px 37px",
+            padding: "36px 30px 37px",
             fontWeight: "700",
             borderRadius: "10px",
           }}

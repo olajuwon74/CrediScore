@@ -1,5 +1,6 @@
 /** @jsxImportSource @compiled/react */
 import { useAppContext } from "../context/state";
+import dynamic from "next/dynamic";
 import Header from "../component/header";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,7 +8,7 @@ import * as Yup from "yup";
 import { crediScore_CONTRACT_ADDRESS, abi } from "../constants";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import worldID from "@worldcoin/id"; // If you installed the JS package as a module
+const worldID = dynamic(() => import("@worldcoin/id"), { ssr: false });
 
 export default function Amount() {
   const { account, library, amountReceived, setAmountReceived } =
