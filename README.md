@@ -1,3 +1,9 @@
+# CrediScore
+CrediScore aims to solve the issues of overcollaterized loan in the de-fi space and also help to marginalize the traditional banking system with the decentralized banking system. 
+
+## How it works
+Users from different defi protocol can generate a credit score based on their previous transactions, we would aggregate this all together and generate a score based on our system rating, we believe this can be used to generate a more accurate parameter/ metric for lending loans to users.
+
 # Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
