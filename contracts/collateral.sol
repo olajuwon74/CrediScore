@@ -6,7 +6,6 @@ pragma solidity ^0.8.10;
 contract CreditTracker{
 
     struct UserCreditScore{
-
         address userAddress;
         uint myCreditScore;
         uint numberOfLoansTaken;
@@ -50,13 +49,13 @@ contract CreditTracker{
 
         UserCreditScore storage userCredit = Tracklog[msg.sender];
         if(repaymentDate < endDate){
-            userCredit.myCreditScore += 2;
+            userCredit.myCreditScore = userCredit.myCreditScore + 2;
         }
         else if(repaymentDate == endDate){
-            userCredit.myCreditScore += 1;
+            userCredit.myCreditScore = userCredit.myCreditScore + 1;
         }
         else{
-            userCredit.myCreditScore += 0;
+            userCredit.myCreditScore = userCredit.myCreditScore;
         }
 
         userCredit.userAddress = addr;
